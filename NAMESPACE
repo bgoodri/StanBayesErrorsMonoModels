@@ -1,0 +1,2 @@
+exportPattern("^[[:alpha:]]+")
+useDynLib(StanTest, .registration = TRUE)
