@@ -65,7 +65,7 @@ parameters {
 transformed parameters{
   simplex [n_groups] Theta;
   Theta[1] = v[1];
-  // stick-break process based on The BUGS book Chapter 11 (p.294)
+  // stick-break process 
   for(j in 2:(n_groups-1)){
       Theta[j]= v[j]*(1-v[j-1])*Theta[j-1]/v[j-1]; 
   }
