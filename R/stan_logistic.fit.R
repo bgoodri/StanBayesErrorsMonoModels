@@ -24,7 +24,7 @@ stan_logistic.fit <- function(dat_sav,xgrid) {
   init_fun <- function() {list(mu=seq(min(xtrue)+1,max(xtrue)-1,length=5),sigma=rep(1,5),
             Theta=rep(1/5,5),xtrue=xtrue,coef=coefs)}
   stanfit <- stanmodels$logistic
-  fit <- rstan::sampling(stanfit, pars = c("MIC_Dens","gx"),data = dat, iter = 1000,chains = 1,thin=2,init=init_fun)
+  fit <- rstan::sampling(stanfit, pars = c("MIC_Dens","gx"),data = dat, iter = 2000,chains = 3,thin=4,init=init_fun)
   parms <- extract(fit)
   
   return(parms)
