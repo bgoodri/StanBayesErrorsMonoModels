@@ -31,8 +31,9 @@ stan_logistic.fit <- function(xobs,yobs,xcens,ycens,xgrid) {
             Theta=rep(1/5,5),xtrue=xtrue,coef=coefs)}
   stanfit <- stanmodels$logistic
   print(dat)
-  print(init_fun)
-  print(stanfit)
+  print(init_fun())
+  print(xtrue)
+  plot(xtrue,yobs)
   fit <- rstan::sampling(stanfit, data = dat, iter = 1000,chains = 1,thin=2,init=init_fun)
   # # sampling_args <- set_sampling_args(
   # #   object = stanfit, 
