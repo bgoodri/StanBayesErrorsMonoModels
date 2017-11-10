@@ -24,13 +24,12 @@ stan_logistic.fit <- function(xobs,yobs,xcens,ycens,xgrid) {
   coefs=parms$coefs
   xtrue=parms$xtrue
   
-  
   ### Run Stan Model
   dat=list(y=yobs,xgrid=xgrid,Ngrid=Ngrid,n_groups=5,ysig=ysig,N=N,xobs=xobs,xsig=xsig,
            xcensl=xcensl,xcensu=xcensu,ycensl=ycensl,ycensu=ycensu)
   init_fun <- function() {list(mu=seq(min(xtrue)+1,max(xtrue)-1,length=5),sigma=rep(1,5),
             Theta=rep(1/5,5),xtrue=xtrue,coef=coefs)}
-  fit <- sampling('../exec/logistic.stan', data = dat, iter = 1000,chains = 1,thin=2,init=init_fun)
+  fit <- stan(file='../exec/logistic.stan', data = dat, iter = 1000,chains = 1,thin=2,init=init_fun)
   
   thetas <- extract(fit, pars = "beta", inc_warmup = TRUE, permuted = FALSE)
 
