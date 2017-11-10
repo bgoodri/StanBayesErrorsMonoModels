@@ -19,12 +19,14 @@ stan_logistic.fit <- function(dat_sav,xgrid) {
   xtrue=parms$xtrue
   
   ### Run Stan Model
+  options(mc.cores=parallel::detectCores())
+  
   dat=list(y=yobs,xgrid=xgrid,Ngrid=Ngrid,n_groups=5,ysig=ysig,N=N,xobs=xobs,xsig=xsig,
            xcensl=xcensl,xcensu=xcensu,ycensl=ycensl,ycensu=ycensu)
   init_fun <- function() {list(mu=seq(min(xtrue)+1,max(xtrue)-1,length=5),sigma=rep(1,5),
             Theta=rep(1/5,5),xtrue=xtrue,coef=coefs)}
   stanfit <- stanmodels$logistic
-  fit <- rstan::sampling(stanfit, pars = c("MIC_Dens","gx"),data = dat, iter = 2000,chains = 3,thin=4,init=init_fun)
+  fit <- rstan::sampling(stanfit, pars = c("MIC_Dens","gx"),data = dat, iter = 3000,chains = 3,thin=5,init=init_fun)
   parms <- extract(fit)
   
   return(parms)
