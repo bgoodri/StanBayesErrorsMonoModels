@@ -21,9 +21,10 @@ initialize_parms_log=function(xobs,yobs,xcensl,xcensu){
        exp(coef[4]*(coef[2]-xtrue)))
     return(ytrue)
   }
-  fit=nls(yobs~nls_logistic(xtrue,coef),start=list(coef=c(30,.2,.5,1)),
-          lower=c(0.01,0.01,0.01,0.01),algorithm='port',trace=FALSE,control=list(maxiter=1000,tol = 1e-04))
-  coefs <- coef(fit)
-  
+  coefs=tryCatch({coef(nls(yobs~nls_logistic(xtrue,coef),start=list(coef=c(max(yobs),.2,.1,.1)),
+          lower=c(0.01,0.01,0.01,0.01),algorithm='port',trace=FALSE,
+          control=list(maxiter=1000,tol = 1e-04)))},
+          error=function(cond){return(c(max(yobs),.2,.1,.1))})
+
   return(list(coefs=coefs,xtrue=xtrue))
 }
