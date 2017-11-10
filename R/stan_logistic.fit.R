@@ -1,29 +1,4 @@
 
-# Part of the rstanarm package for estimating model parameters
-# Copyright (C) 2015, 2016, 2017 Trustees of Columbia University
-# 
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 3
-# of the License, or (at your option) any later version.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-#' @rdname stan_polr
-#' @export
-#' @param x A design matrix.
-#' @param y A response variable, which must be a (preferably ordered) factor.
-#' @param wt A numeric vector (possibly \code{NULL}) of observation weights.
-#' @param offset A numeric vector (possibly \code{NULL}) of offsets.
-#' 
-#' @importFrom utils head tail
 stan_logistic.fit <- function(xobs,yobs,xcens,ycens) {
   
   ### Initialize
