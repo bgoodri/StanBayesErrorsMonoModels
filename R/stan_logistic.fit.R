@@ -18,7 +18,7 @@ stan_logistic.fit <- function(xobs,yobs,xcens,ycens,xgrid) {
   ycensu[ycens==1] = 1
   
   dat_sav=data.frame(xobs,yobs,xcensl,xcensu,ycensu,ycensl)
-  ?rst
+
   ### Initialize
   parms=initialize_parms_log(xobs,yobs,xcensu,xcensl)
   coefs=parms$coefs
