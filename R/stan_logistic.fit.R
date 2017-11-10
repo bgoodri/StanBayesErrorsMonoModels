@@ -22,6 +22,7 @@ stan_logistic.fit <- function(xobs,yobs,xcens,ycens,xgrid) {
   ### Initialize
   parms=initialize_parms_log(xobs,yobs,xcensu,xcensl)
   coefs=parms$coefs
+  print(parms)
   print(coefs)
   xtrue=parms$xtrue
   
