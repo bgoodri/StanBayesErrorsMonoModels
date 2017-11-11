@@ -42,7 +42,6 @@ data {
   vector[N] ycensu;
   int xlower;
   int xupper;
-  vector[numCoef] icoefs;
   matrix[N, numCoef] designMatrix;
   matrix[Ngrid, numCoef] designMatrixGrid;
   int n_groups;

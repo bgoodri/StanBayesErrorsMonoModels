@@ -1,4 +1,4 @@
-  initialize_parms_spline=function(xobs,yobs,xcensl,xcensu){
+  initialize_parms_spline=function(xobs,yobs,xcensl,xcensu,xgrid){
   
   ## Initial xtrue
   xtrue=rep(NA,length(xobs))
@@ -35,12 +35,14 @@
   designMatrix=getIsplineC(xtrue,knotseq,bases)
   designMatrixGrid=getIsplineC(xgrid,knotseq,bases)
   
+  min_sav=1e7
   for(i in seq(.5,7,by=.1)){
     icoefs1=seq(.1,i,length=ncol(designMatrix))
-    ytrue1=icoefs1%*%t(designMatrix)
-    if(sum(abs(yobs-ytrue1))<min){ min=sum(abs(yobs-ytrue1)); save=i}
+    ytrue1=as.numeric(icoefs1%*%t(designMatrix))
+    if(sum(abs(yobs-ytrue1))<min_sav){ min_sav=sum(abs(yobs-ytrue1)); save=i}
   }
-  coef=seq(.1,save,length=ncol(designMatrix))
+  coefs=seq(.1,save,length=ncol(designMatrix))
 
-  return(list(coefs=coefs,xtrue=xtrue,designMatrix=designMatrix,designMatrixGrid=designMatrixGrid))
+  return(list(coefs=coefs,xtrue=xtrue,designMatrix=designMatrix,designMatrixGrid=designMatrixGrid,
+              xlower=xlower,xupper=xupper))
 }
