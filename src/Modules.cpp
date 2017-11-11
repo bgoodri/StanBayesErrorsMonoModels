@@ -7,7 +7,7 @@ RCPP_MODULE(stan_fit4logistic_mod) {
 
     class_<rstan::stan_fit<model_logistic_namespace::model_logistic, boost::random::ecuyer1988> >("model_logistic")
 
-    .constructor<SEXP,SEXP>()
+    .constructor<SEXP,SEXP,SEXP>()
 
 
     .method("call_sampler", &rstan::stan_fit<model_logistic_namespace::model_logistic, boost::random::ecuyer1988> ::call_sampler)
@@ -36,7 +36,7 @@ RCPP_MODULE(stan_fit4spline_mod) {
 
     class_<rstan::stan_fit<model_spline_namespace::model_spline, boost::random::ecuyer1988> >("model_spline")
 
-    .constructor<SEXP,SEXP>()
+    .constructor<SEXP,SEXP,SEXP>()
 
 
     .method("call_sampler", &rstan::stan_fit<model_spline_namespace::model_spline, boost::random::ecuyer1988> ::call_sampler)

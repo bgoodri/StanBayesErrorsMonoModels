@@ -1,2 +1,8 @@
 exportPattern("^[[:alpha:]]+")
 useDynLib(StanTest, .registration = TRUE)
+
+
+import(grid)
+import(gridExtra)
+import(parallel)
+import(ggplot2)

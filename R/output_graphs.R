@@ -1,4 +1,4 @@
-diagnostics=function(fit,xgrid,dat_sav){
+diagnostics=function(list_of_draws,xgrid,dat_sav){
   
 
   xobs=dat_sav$xobs
@@ -22,7 +22,7 @@ diagnostics=function(fit,xgrid,dat_sav){
 
   
   ### MIC Density
-  MIC_Dens=fit$MIC_Dens
+  MIC_Dens=list_of_draws$MIC_Dens
   densDat=data_frame(xgrid,y=apply(MIC_Dens,2,mean))
   densDat$lower=apply(MIC_Dens,2,function(x) quantile(x,probs=c(.05)))
   densDat$upper=apply(MIC_Dens,2,function(x) quantile(x,probs=c(.95)))
@@ -43,7 +43,7 @@ diagnostics=function(fit,xgrid,dat_sav){
     labs(title='',y='',x=expression(MIC~(log["2"]~ug/mL)))
 
   ### MIC/DIA Relationship
-  gx=fit$gx
+  gx=list_of_draws$gx
   gxDat=data_frame(xgrid,y=apply(gx,2,mean))
   gxDat$lower=apply(gx,2,function(x) quantile(x,probs=c(.05)))
   gxDat$upper=apply(gx,2,function(x) quantile(x,probs=c(.95)))
